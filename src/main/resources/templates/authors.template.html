@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Spring Framework Guru</title>
 
     <!-- Latest compiled and minified CSS -->
@@ -14,25 +14,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Book List</h1>
+<h1>Author List</h1>
 
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author(s)</th>
-            <th>Publisher</th>
-        </tr>
-        <tr th:each="book : ${books}">
-            <td th:text="${book.id}">123</td>
-            <td th:text="${book.title}">Spring in Action</td>
-            <td>
-                <div th:each="author : ${book.authors}">
-                    <span th:text="${author.firstName + ' ' + author.lastName + ', '}">Joe Smoe</span>
-                </div>
-            </td>
-            <td th:text="${book.publisher.name}">Worx</td>
-        </tr>
-    </table>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Books</th>
+    </tr>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}">123</td>
+        <td th:text="${author.firstName}">Joe</td>
+        <td th:text="${author.lastName}">Smoe</td>
+        <td>
+            <div th:each="book : ${author.books}">
+                <span th:text="${book.title}">To Kill a Mockingjay</span>
+            </div>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
