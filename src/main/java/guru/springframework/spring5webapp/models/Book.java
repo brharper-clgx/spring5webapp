@@ -12,7 +12,9 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
-    private String publisher;
+
+    @ManyToOne
+    private Publisher publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
@@ -21,10 +23,17 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String isbn, String publisher) {
+    public Book(String title, String isbn) {
         this.title = title;
         this.isbn = isbn;
-        this.publisher = publisher;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -43,14 +52,6 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
     public Set<Author> getAuthors() {
         return authors;
     }
@@ -59,11 +60,14 @@ public class Book {
         this.authors = authors;
     }
 
-    public Long getId() {
-        return id;
+
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setId(Long id) { this.id = id; }
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -84,7 +88,7 @@ public class Book {
             "id=" + id +
             ", title='" + title + '\'' +
             ", isbn='" + isbn + '\'' +
-            ", publisher='" + publisher + '\'' +
+            ", publisher=" + publisher +
             ", authors=" + authors +
             '}';
     }
